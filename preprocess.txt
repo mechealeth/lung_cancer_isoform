@@ -1,0 +1,10 @@
+#list sample bamfile
+find /lustre/tgfaulkn/Drop/Minchun/lung_cancer_cell_line_pacbio -name \*.${sadapter_barcode}.segmented.lima.IsoSeqX_${sample_barcode}_5p--IsoSeqX_3p.bam > ${sample}.flnc.fofn
+#merger bamfile from different flowcell
+pbmerge -j 30 -o ${sample}.bam ${sample}.flnc.fofn
+#pacbio formatted bamfile to fastq
+bam2fastq -o ${sample}  -j 30 ${sample}.fastq.gz
+#minimap2 mapping / sam to bam /samtools sort
+minimap2 -ax splice:hq -uf -t 30 /lustre/tgfaulkn/Drop/Minchun/hs1.fa  ${sample}.fastq.gz | samtools view -bh - | samtools sort -@ 30 - -o  ${sample}.hs1.aligned.bam
+#quick qc
+cramino ${sample}.hs1.aligned.bam
