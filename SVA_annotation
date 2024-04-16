@@ -1,0 +1,51 @@
+#!/bin/bash
+#SBATCH --job-name=bash
+#SBATCH --nodes=1
+#SBATCH --mem=100G
+#SBATCH --partition=quick
+#SBATCH --ntasks-per-node=8
+#SBATCH --error=%j.err
+#SBATCH --output=%j.out
+
+CURDIR=`pwd`
+rm -rf $CURDIR/nodelist.$SLURM_JOB_ID
+NODES=`scontrol show hostnames $SLURM_JOB_NODELIST`
+for i in $NODES
+do
+echo "$i:$SLURM_NTASKS_PER_NODE" >> $CURDIR/nodelist.$SLURM_JOB_ID
+done
+echo $SLURM_NPROCS
+
+echo "process will start at : "
+date
+echo "++++++++++++++++++++++++++++++++++++++++"
+
+echo "start .."
+#setting environment
+
+source ~/.bashrc
+source activate FLAMES
+
+cd /lustre/tmchen4/iso-seq/cell_lines/SVA-F_reannote
+
+SEQ="/lustre/tmchen4/iso-seq/cell_lines/SVA-F_reannote/all_sva_F.fasta"
+RMSK="/lustre/tmchen4/iso-seq/cell_lines/SVA-F_reannote/RM2_all_sva_F.fasta_1712838195.out"
+
+WFOLDER="/lustre/tmchen4/iso-seq/cell_lines/SVA-F_reannote"
+XTEA="/lustre/tmchen4/iso-seq/cell_lines/SVA-F_reannote/xTea/xtea_long/"
+
+
+ 
+MAST2="/lustre/tmchen4/iso-seq/cell_lines/SVA-F_reannote/MAST2_gene.fa"
+HEX="/lustre/tmchen4/iso-seq/cell_lines/SVA-F_reannote/heximer4.txt"
+REF="/lustre/tmchen4/ref/hs1.fa"
+ 
+ 
+python ${XTEA}"classify_TE_insertion_from_rmsk.py"  --seq ${SEQ} --rmsk ${RMSK} --hexam ${HEX} --mast2 ${MAST2}  -n 8 -p ${WFOLDER} --ref ${REF} -o "/lustre/tmchen4/iso-seq/cell_lines/SVA-F_reannote/sva_f.txt"
+
+echo "++++++++++++++++++++++++++++++++++++++++"
+echo "processs will sleep 30s"
+sleep 30
+echo "process end at : "
+date
+rm -rf $CURDIR/nodelist.$SLURM_JOB_ID
