@@ -17,8 +17,8 @@ TE-chimeras
 
 # SVA annotation
 Detail info from : https://academic.oup.com/nar/article/51/21/11453/7308677?login=true
-                   https://github.com/parklab/SVA_landscape_project/tree/main
+Detail method : https://github.com/parklab/SVA_landscape_project/tree/main
 
-??? unsovle pros :
+??? unsovle problem : this method kinda laborious more systematics way
 
 
