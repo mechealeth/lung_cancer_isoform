@@ -36,7 +36,6 @@ python /lustre/tmchen4/iso-seq/SQANTI3-5.2/sqanti3_filter.py rules -j /lustre/tm
 	                           --gtf /lustre/tmchen4/iso-seq/tissue_sample/SQANTI3_output_hs1SJ.out.tab/tissue_isoseq_corrected.gtf \
                                 -o filter
 
-
 echo "++++++++++++++++++++++++++++++++++++++++"
 echo "processs will sleep 30s"
 sleep 30
