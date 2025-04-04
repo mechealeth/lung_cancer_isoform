@@ -1,0 +1,32 @@
+{
+    "chip.title" : "H1299_H3K4me3",
+    "chip.description" : " H1299_H3K4me3 paired-end sample.",
+
+    "chip.pipeline_type" : "histone",
+    "chip.aligner" : "bowtie2",
+    "chip.align_only" : false,
+    "chip.true_rep_only" : false,
+
+    "chip.genome_tsv" : "/lustre/tmchen4/encode_genome_hs1/hs1.tsv",
+
+    "chip.paired_end" : true,
+    "chip.ctl_paired_end" : true,
+
+    "chip.always_use_pooled_ctl" : true,
+
+    "chip.fastqs_rep1_R1" : [ "/lustre/tmchen4/H1299/ChIP-Seq/H1299_H3K4me3_R1_1.fastq.gz"],
+    "chip.fastqs_rep1_R2" : [ "/lustre/tmchen4/H1299/ChIP-Seq/H1299_H3K4me3_R1_2.fastq.gz"],
+    "chip.fastqs_rep2_R1" : [ "/lustre/tmchen4/H1299/ChIP-Seq/H1299_H3K4me3_R2_1.fastq.gz"],
+    "chip.fastqs_rep2_R2" : [ "/lustre/tmchen4/H1299/ChIP-Seq/H1299_H3K4me3_R2_2.fastq.gz"],
+    "chip.fastqs_rep3_R1" : [ "/lustre/tmchen4/H1299/ChIP-Seq/H1299_H3K4me3_R3_1.fastq.gz"],
+    "chip.fastqs_rep3_R2" : [ "/lustre/tmchen4/H1299/ChIP-Seq/H1299_H3K4me3_R3_2.fastq.gz"],
+
+
+    "chip.ctl_fastqs_rep1_R1" : [ "/lustre/tmchen4/H1299/ChIP-Seq/H1299_input_R1_1.fastq.gz" ],
+    "chip.ctl_fastqs_rep1_R2" : [ "/lustre/tmchen4/H1299/ChIP-Seq/H1299_input_R1_2.fastq.gz" ],
+    "chip.ctl_fastqs_rep2_R1" : [ "/lustre/tmchen4/H1299/ChIP-Seq/H1299_input_R2_1.fastq.gz" ],
+    "chip.ctl_fastqs_rep2_R2" : [ "/lustre/tmchen4/H1299/ChIP-Seq/H1299_input_R2_2.fastq.gz" ],
+    "chip.ctl_fastqs_rep3_R1" : [ "/lustre/tmchen4/H1299/ChIP-Seq/H1299_input_R3_1.fastq.gz" ],
+    "chip.ctl_fastqs_rep3_R2" : [ "/lustre/tmchen4/H1299/ChIP-Seq/H1299_input_R3_2.fastq.gz" ]
+
+}
