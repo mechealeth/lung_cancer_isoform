@@ -12,10 +12,10 @@ $3 == "transcript" {
 
 
 computeMatrix reference-point \
-  -S 1HI-H3K4M3-LHC26216_L2_1.srt.nodup.bw 3HI-H3K4M3-LHC26253_L8_1.srt.nodup.bw \
+  -S 2ND-H3K4M3-LHC26221_L8_1.srt.nodup.bw 3ND-H3K4M3-LHC26238_L8_1.srt.nodup.bw \
   -R TSS_transcripts.bed \
   --referencePoint TSS -b 3000 -a 3000 -bs 50 --skipZeros \
-  -out matrix_HI_H3K4me3_TSS.gz
+  -out matrix_ND-H3K4M3_TSS.gz
 
 
 plotHeatmap \
