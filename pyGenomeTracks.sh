@@ -73,3 +73,31 @@ red : #fc0335
 
 pyGenomeTracks --tracks patient_genome_tracks.ini --region chr1:154758828-154792136 --outFileName patient-erk.pdf
 pyGenomeTracks --tracks cl_tiss_genome_tracks.ini --region chr1:154758828-154792136 --outFileName cl_erk.pdf
+
+
+rsync -av \
+/QRISdata/Q7598/i3N/i3N_WT_hiPSC_Rep1_H3K4me3_2025.hs1.aligned.bam \
+/QRISdata/Q7598/i3N/i3N_WT_hiPSC_Rep2_H3K4me3_2025.hs1.aligned.bam \
+/QRISdata/Q7598/i3N/i3N_WT_hiPSC_Rep3_H3K4me3_2025.hs1.aligned.bam \
+/QRISdata/Q7598/i3N/i3N_WT_Day0_Rep1_H3K4me3_2025.hs1.aligned.bam \
+/QRISdata/Q7598/i3N/i3N_WT_Day0_Rep2_H3K4me3_2025.hs1.aligned.bam \
+/QRISdata/Q7598/i3N/i3N_WT_Day0_Rep3_H3K4me3_2025.hs1.aligned.bam \
+/QRISdata/Q7598/i3N/i3N_WT_Day21_Rep1_H3K4me3_2025.hs1.aligned.bam \
+/QRISdata/Q7598/i3N/i3N_WT_Day21_Rep2_H3K4me3_2025.hs1.aligned.bam \
+/QRISdata/Q7598/i3N/i3N_WT_Day21_Rep3_H3K4me3_2025.hs1.aligned.bam \
+/scratch/project/te_lung/i3N/H3K4me3
+
+
+rsync -av \
+/QRISdata/Q7598/i3N/i3N_WT_hiPSC_Rep1_H3K4me3_2025.hs1.aligned.bam* \
+/QRISdata/Q7598/i3N/i3N_WT_hiPSC_Rep2_H3K4me3_2025.hs1.aligned.bam* \
+/QRISdata/Q7598/i3N/i3N_WT_hiPSC_Rep3_H3K4me3_2025.hs1.aligned.bam* \
+/QRISdata/Q7598/i3N/i3N_WT_Day0_Rep1_H3K4me3_2025.hs1.aligned.bam* \
+/QRISdata/Q7598/i3N/i3N_WT_Day0_Rep2_H3K4me3_2025.hs1.aligned.bam* \
+/QRISdata/Q7598/i3N/i3N_WT_Day0_Rep3_H3K4me3_2025.hs1.aligned.bam* \
+/QRISdata/Q7598/i3N/i3N_WT_Day21_Rep1_H3K4me3_2025.hs1.aligned.bam* \
+/QRISdata/Q7598/i3N/i3N_WT_Day21_Rep2_H3K4me3_2025.hs1.aligned.bam* \
+/QRISdata/Q7598/i3N/i3N_WT_Day21_Rep3_H3K4me3_2025.hs1.aligned.bam* \
+/scratch/project/te_lung/i3N/H3K4me3
+
+
