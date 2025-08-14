@@ -1,0 +1,96 @@
+#RCC
+#get SVF exo info from gtf
+cd /scratch/project/te_lung/Ref
+cat lung_tissue_filtered.gtf | grep "BambuTx619"
+cat lung_tissue_filtered.gtf | grep "BambuTx620"
+#double check junction in star ref
+cd /scratch/project/te_lung/tissue_star_index_10
+####BambuTx619####
+cat sjdbList.fromGTF.out.tab | grep "121990051"
+chr12	121990051	121995519	+	12014
+####BambuTx620####
+cat sjdbList.fromGTF.out.tab | grep "121989974"
+chr12	121989974	121995519	+	12014
+#########
+
+#!/usr/bin/bash
+set -euo pipefail
+
+############## USER SETTINGS ##############
+SRC_DIR="/QRISdata/Q7816/TCGA_LUSC/in_bam"
+
+# Junction 1 (e.g., BambuTx619) — STAR SJ.out.tab columns 1–4: chr start end strand(1:+,2:-)
+J1_CHR="chr12"; J1_START=121990051; J1_END=121995519; J1_STRAND=1
+# Junction 2 (e.g., BambuTx620)
+J2_CHR="chr12"; J2_START=121989974; J2_END=121995519; J2_STRAND=1
+
+# Output files (written to current working dir)
+JUNC_OUT="/scratch/project/te_lung/CCLE_lung/junction_counts.tsv"
+TOTAL_OUT="/scratch/project/te_lung/CCLE_lung/total_mapped.tsv"
+###########################################
+
+# Ensure TMPDIR exists
+: "${TMPDIR:=/tmp}"
+WORKDIR="$(mktemp -d "${TMPDIR%/}/tcga_lusc_work.XXXXXX")"
+trap 'rm -rf "$WORKDIR"' EXIT
+
+echo "[INFO] Working in ${WORKDIR}"
+
+# 1) Pull only needed files into $TMPDIR
+echo "[INFO] rsync STAR junctions and BAMs from ${SRC_DIR} ..."
+rsync -a --prune-empty-dirs \
+  --include='*/' \
+  --include='*SJ.out.tab' \
+  --include='*.bam' \
+  --include='*.bai' \
+  --exclude='*' \
+  "${SRC_DIR%/}/" "${WORKDIR%/}/"
+
+# 2) Junction counts across all *SJ.out.tab (sum col7+col8 for exact chr/start/end/strand)
+echo -e "sample\t${J1_CHR}:${J1_START}-${J1_END}(${J1_STRAND})\t${J2_CHR}:${J2_START}-${J2_END}(${J2_STRAND})" > "$JUNC_OUT"
+
+shopt -s nullglob
+sj_files=( "${WORKDIR%/}"/*SJ.out.tab )
+if [[ ${#sj_files[@]} -eq 0 ]]; then
+  echo "[WARN] No SJ.out.tab files found under ${WORKDIR}"
+fi
+
+for f in "${sj_files[@]}"; do
+  base="$(basename "$f")"
+  # STAR names in your screenshot look like: TCGA-xx-xxxx-01ASJ.out.tab (no underscore)
+  sample="$(echo "$base" | sed -E 's/_?SJ\.out\.tab$//')"
+
+  c1=$(awk -v c="$J1_CHR" -v s="$J1_START" -v e="$J1_END" -v st="$J1_STRAND" '
+        $1==c && $2==s && $3==e && $4==st {sum += ($7+$8)} END{printf "%.0f", (sum?sum:0)}' "$f")
+  c2=$(awk -v c="$J2_CHR" -v s="$J2_START" -v e="$J2_END" -v st="$J2_STRAND" '
+        $1==c && $2==s && $3==e && $4==st {sum += ($7+$8)} END{printf "%.0f", (sum?sum:0)}' "$f")
+
+  echo -e "${sample}\t${c1}\t${c2}" >> "$JUNC_OUT"
+done
+
+# 3) Total mapped reads per BAM (include secondary & supplementary, exclude unmapped)
+# samtools view -c -F 0x4 (no -F 0x100/0x800, so they are included)
+echo -e "sample\ttotal_mapped_reads" > "$TOTAL_OUT"
+
+bam_files=( "${WORKDIR%/}"/*.bam )
+if [[ ${#bam_files[@]} -eq 0 ]]; then
+  echo "[WARN] No BAM files found under ${WORKDIR}"
+fi
+
+for b in "${bam_files[@]}"; do
+  base="$(basename "$b")"
+  # From your filenames: TCGA-...-01AAligned.sortedByCoord.out.bam (prefix before 'Aligned.sortedByCoord.out.bam')
+  sample="$(echo "$base" | sed -E 's/Aligned\.sortedByCoord\.out\.bam$//; s/\.bam$//')"
+  n=$(samtools view -c -F 0x4 "$b")
+  echo -e "${sample}\t${n}" >> "$TOTAL_OUT"
+done
+
+# 4) Sort outputs by sample (optional but neat)
+tmp1="$(mktemp)"; tmp2="$(mktemp)"
+{ head -n1 "$JUNC_OUT"; tail -n +2 "$JUNC_OUT" | sort -k1,1; } > "$tmp1" && mv "$tmp1" "$JUNC_OUT"
+{ head -n1 "$TOTAL_OUT"; tail -n +2 "$TOTAL_OUT" | sort -k1,1; } > "$tmp2" && mv "$tmp2" "$TOTAL_OUT"
+
+echo "[INFO] Done."
+echo "  - Junction counts: $JUNC_OUT"
+echo "  - Total mapped:    $TOTAL_OUT"
+echo "[INFO] Temporary files cleaned from ${WORKDIR}"
