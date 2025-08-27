@@ -1,0 +1,228 @@
+make_tracks_file --trackFiles \
+    /lustre/tmchen4/iso-seq/tissue_sample/SQANTI3_output_hs1SJ.out.tab/filter.filtered.gtf \
+    /lustre/tmchen4/ref/T2T_CHM13_v2_rmsk_TE_chr.gtf \
+    /lustre/tmchen4/iso-seq/allin/align/07PM0575.normal.bw \
+    /lustre/tmchen4/iso-seq/allin/align/07PM0575.tumour.bw \
+    /lustre/tmchen4/iso-seq/allin/align/10PM1163.normal.bw \
+    /lustre/tmchen4/iso-seq/allin/align/10PM1163.tumour.bw \
+    /lustre/tmchen4/iso-seq/allin/align/10PM2283.normal.bw \
+    /lustre/tmchen4/iso-seq/allin/align/10PM2283.tumour.bw \
+    /lustre/tmchen4/iso-seq/allin/align/12PM1049.normal.bw \
+    /lustre/tmchen4/iso-seq/allin/align/12PM1049.tumour.bw \
+    --out select_tissue.ini
+
+pyGenomeTracks --tracks select_tissue.ini --region chr12:121,967,414-122,001,029 --outFileName sel_patient-svaf.pdf
+
+
+methylartist locus \
+--bams \
+/lustre/tgfaulkn/Drop/Barun/ONT/07PM0575.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM1163.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2283.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2356.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/12PM1049.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/13PM0352.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/14PM0263.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/21DSRB006.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/07PM0575.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM1163.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2283.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2356.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/12PM1049.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/13PM0352.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/14PM0263.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/21DSRB006.tumour.hs1.aligned.mod.bam \
+--ref /lustre/tmchen4/ref/hs1.fa \
+--motif CG \
+-i chr12:121984890-122000539 \
+-g /lustre/tmchen4/ref/Homo_sapiens_chr-GCA_009914755.4-2022_07-genes.gtf.gz \
+-l 121989307-121990791 \
+-p 1,6,1,3,4 \
+-b \
+/lustre/tgfaulkn/Drop/Barun/ONT/07PM0575.normal.hs1.aligned.mod.bam:#C3E7EF,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM1163.normal.hs1.aligned.mod.bam:#89D6E8,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2283.normal.hs1.aligned.mod.bam:#0E677C,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2356.normal.hs1.aligned.mod.bam:#45C2DB,\
+/lustre/tgfaulkn/Drop/Barun/ONT/12PM1049.normal.hs1.aligned.mod.bam:#0090BF,\
+/lustre/tgfaulkn/Drop/Barun/ONT/13PM0352.normal.hs1.aligned.mod.bam:#0172B0,\
+/lustre/tgfaulkn/Drop/Barun/ONT/14PM0263.normal.hs1.aligned.mod.bam:#03045A,\
+/lustre/tgfaulkn/Drop/Barun/ONT/21DSRB006.normal.hs1.aligned.mod.bam:#023C85,\
+/lustre/tgfaulkn/Drop/Barun/ONT/07PM0575.tumour.hs1.aligned.mod.bam:#e63e00,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM1163.tumour.hs1.aligned.mod.bam:#cc3700,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2283.tumour.hs1.aligned.mod.bam:#b33000,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2356.tumour.hs1.aligned.mod.bam:#992900,\
+/lustre/tgfaulkn/Drop/Barun/ONT/12PM1049.tumour.hs1.aligned.mod.bam:#802300,\
+/lustre/tgfaulkn/Drop/Barun/ONT/13PM0352.tumour.hs1.aligned.mod.bam:#661c00,\
+/lustre/tgfaulkn/Drop/Barun/ONT/14PM0263.tumour.hs1.aligned.mod.bam:#4d1500,\
+/lustre/tgfaulkn/Drop/Barun/ONT/21DSRB006.tumour.hs1.aligned.mod.bam:#330e00 \
+--labelgenes \
+--svg
+
+methylartist composite \
+ --bams \ /lustre/tgfaulkn/Drop/Barun/ONT/07PM0575.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM1163.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2283.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2356.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/12PM1049.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/13PM0352.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/14PM0263.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/21DSRB006.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/07PM0575.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM1163.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2283.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2356.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/12PM1049.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/13PM0352.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/14PM0263.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/21DSRB006.tumour.hs1.aligned.mod.bam \
+-s SVAF.one.bed   -r /lustre/tmchen4/ref/hs1.fa   -t SVAF.one.fa   --blocks SVAF_highlights.bed \
+-b \
+--meanplot_cutoff 1 \
+--lenfrac 0.5 \
+--maxsegs 1 \
+/lustre/tgfaulkn/Drop/Barun/ONT/07PM0575.normal.hs1.aligned.mod.bam:#C3E7EF,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM1163.normal.hs1.aligned.mod.bam:#89D6E8,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2283.normal.hs1.aligned.mod.bam:#0E677C,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2356.normal.hs1.aligned.mod.bam:#45C2DB,\
+/lustre/tgfaulkn/Drop/Barun/ONT/12PM1049.normal.hs1.aligned.mod.bam:#0090BF,\
+/lustre/tgfaulkn/Drop/Barun/ONT/13PM0352.normal.hs1.aligned.mod.bam:#0172B0,\
+/lustre/tgfaulkn/Drop/Barun/ONT/14PM0263.normal.hs1.aligned.mod.bam:#03045A,\
+/lustre/tgfaulkn/Drop/Barun/ONT/21DSRB006.normal.hs1.aligned.mod.bam:#023C85,\
+/lustre/tgfaulkn/Drop/Barun/ONT/07PM0575.tumour.hs1.aligned.mod.bam:#e63e00,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM1163.tumour.hs1.aligned.mod.bam:#cc3700,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2283.tumour.hs1.aligned.mod.bam:#b33000,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2356.tumour.hs1.aligned.mod.bam:#992900,\
+/lustre/tgfaulkn/Drop/Barun/ONT/12PM1049.tumour.hs1.aligned.mod.bam:#802300,\
+/lustre/tgfaulkn/Drop/Barun/ONT/13PM0352.tumour.hs1.aligned.mod.bam:#661c00,\
+/lustre/tgfaulkn/Drop/Barun/ONT/14PM0263.tumour.hs1.aligned.mod.bam:#4d1500,\
+/lustre/tgfaulkn/Drop/Barun/ONT/21DSRB006.tumour.hs1.aligned.mod.bam:#330e00 
+
+
+
+
+
+methylartist locus \
+--bams \
+/lustre/tgfaulkn/Drop/Barun/ONT/07PM0575.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM1163.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2283.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2356.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/12PM1049.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/13PM0352.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/14PM0263.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/21DSRB006.normal.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/07PM0575.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM1163.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2283.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2356.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/12PM1049.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/13PM0352.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/14PM0263.tumour.hs1.aligned.mod.bam,\
+/lustre/tgfaulkn/Drop/Barun/ONT/21DSRB006.tumour.hs1.aligned.mod.bam \
+--ref /lustre/tmchen4/ref/hs1.fa \
+--motif CG \
+-i chr12:121989307-121990791 \
+-g /lustre/tmchen4/ref/Homo_sapiens_chr-GCA_009914755.4-2022_07-genes.gtf.gz \
+--highlight_bed highlight.bed \
+-p 1,6,1,3,4 \
+-b \
+/lustre/tgfaulkn/Drop/Barun/ONT/07PM0575.normal.hs1.aligned.mod.bam:#C3E7EF,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM1163.normal.hs1.aligned.mod.bam:#89D6E8,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2283.normal.hs1.aligned.mod.bam:#0E677C,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2356.normal.hs1.aligned.mod.bam:#45C2DB,\
+/lustre/tgfaulkn/Drop/Barun/ONT/12PM1049.normal.hs1.aligned.mod.bam:#0090BF,\
+/lustre/tgfaulkn/Drop/Barun/ONT/13PM0352.normal.hs1.aligned.mod.bam:#0172B0,\
+/lustre/tgfaulkn/Drop/Barun/ONT/14PM0263.normal.hs1.aligned.mod.bam:#03045A,\
+/lustre/tgfaulkn/Drop/Barun/ONT/21DSRB006.normal.hs1.aligned.mod.bam:#023C85,\
+/lustre/tgfaulkn/Drop/Barun/ONT/07PM0575.tumour.hs1.aligned.mod.bam:#e63e00,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM1163.tumour.hs1.aligned.mod.bam:#cc3700,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2283.tumour.hs1.aligned.mod.bam:#b33000,\
+/lustre/tgfaulkn/Drop/Barun/ONT/10PM2356.tumour.hs1.aligned.mod.bam:#992900,\
+/lustre/tgfaulkn/Drop/Barun/ONT/12PM1049.tumour.hs1.aligned.mod.bam:#802300,\
+/lustre/tgfaulkn/Drop/Barun/ONT/13PM0352.tumour.hs1.aligned.mod.bam:#661c00,\
+/lustre/tgfaulkn/Drop/Barun/ONT/14PM0263.tumour.hs1.aligned.mod.bam:#4d1500,\
+/lustre/tgfaulkn/Drop/Barun/ONT/21DSRB006.tumour.hs1.aligned.mod.bam:#330e00 \
+--labelgenes \
+--svg
+
+chr12 121989307 121990791 SVAF +
+
+
+16 365 Alu-like #edc255
+366 966 VNTR1 #55ed5f
+967 1475 SINE-R #556fed
+
+
+#Flames env
+rmats2sashimiplot \
+  --b1 ./rmats2sashimiplot_test_data/sample_1_replicate_1.bam,./rmats2sashimiplot_test_data/sample_1_replicate_2.bam,./rmats2sashimiplot_test_data/sample_1_replicate_3.bam \
+  --b2 ./rmats2sashimiplot_test_data/sample_2_replicate_1.bam,./rmats2sashimiplot_test_data/sample_2_replicate_2.bam,./rmats2sashimiplot_test_data/sample_2_replicate_3.bam \
+  -c chr16:+:9000:25000:./rmats2sashimiplot_test_data/annotation.gff3 \
+  --l1 SampleOne \
+  --l2 SampleTwo \
+  --exon_s 1 \
+  --intron_s 5 \
+  -o test_coordinate_output
+
+
+chr12    121989323        121989672        Alu-like     -
+chr12    121989673        121990273        VNTR    -
+chr12    121990274        121990782        SINE-R    +
+
+cd /lustre/tmchen4/manuscripts_tempfile
+
+    /lustre/tmchen4/iso-seq/tissue_sample/SQANTI3_output_hs1SJ.out.tab/filter.filtered.gtf \
+    /lustre/tmchen4/ref/T2T_CHM13_v2_rmsk_TE_chr.gtf \
+    /lustre/tmchen4/iso-seq/allin/align/07PM0575.normal.bw \
+    /lustre/tmchen4/iso-seq/allin/align/07PM0575.tumour.bw \
+    /lustre/tmchen4/iso-seq/allin/align/10PM1163.normal.bw \
+    /lustre/tmchen4/iso-seq/allin/align/10PM1163.tumour.bw \
+    /lustre/tmchen4/iso-seq/allin/align/10PM2283.normal.bw \
+    /lustre/tmchen4/iso-seq/allin/align/10PM2283.tumour.bw \
+    /lustre/tmchen4/iso-seq/allin/align/12PM1049.normal.bw \
+    /lustre/tmchen4/iso-seq/allin/align/12PM1049.tumour.bw \
+
+
+
+rmats2sashimiplot \
+  --b1 07PM0575.normal_Pacbio.hs1.aligned.bam,10PM1163.normal_Pacbio.hs1.aligned.bam,10PM2283.normal_Pacbio.hs1.aligned.bam,12PM1049.normal_Pacbio.hs1.aligned.bam \
+  --b2 07PM0575.tumour_Pacbio.hs1.aligned.bam,10PM1163.tumour_Pacbio.hs1.aligned.bam,10PM2283.tumour_Pacbio.hs1.aligned.bam,12PM1049.tumour_Pacbio.hs1.aligned.bam \
+  -c chr12:+:121967414:122001029:/lustre/tmchen4/iso-seq/tissue_sample/SQANTI3_output_hs1SJ.out.tab/filter.filtered.gtf \
+  --l1 Normal \
+  --l2 Tumor \
+  --exon_s 1 \
+  --intron_s 5 \
+  -o /lustre/tmchen4/manuscripts_tempfile
+
+chr12:+:121967414:122001029
+
+
+# clip your GTF to the window & strand you want (prevents index errors)
+gffread /lustre/tmchen4/iso-seq/tissue_sample/SQANTI3_output_hs1SJ.out.tab/filter.filtered.gtf \
+  -T -r chr12:121967414-122001029 -o- | awk '$3~/(gene|transcript|exon)/ && $7=="+"' > annot.clip.plus.gtf
+
+/lustre/tmchen4/ggsashimi.py \
+  -b /lustre/tmchen4/manuscripts_tempfile/input_bams.tsv \
+  -c chr12:121967414-122001029 \
+  -g annot.clip.plus.gtf \
+  -M 2 -P palette.tsv -C 3 -S CFAP251 -F svg -o chr12_isoseq_sashimi --alpha 0.8 --base-size 14 --height 2.5 --width 10
+
+07PM0575N	/lustre/tmchen4/iso-seq/allin/align/07PM0575.normal_Pacbio.hs1.aligned.bam	Normal
+10PM1163N	/lustre/tmchen4/iso-seq/allin/align/10PM1163.normal_Pacbio.hs1.aligned.bam	Normal
+10PM2283N	/lustre/tmchen4/iso-seq/allin/align/10PM2283.normal_Pacbio.hs1.aligned.bam	Normal
+12PM1049N	/lustre/tmchen4/iso-seq/allin/align/12PM1049.normal_Pacbio.hs1.aligned.bam	Normal
+07PM0575T	/lustre/tmchen4/iso-seq/allin/align/07PM0575.tumour_Pacbio.hs1.aligned.bam	Tumor
+10PM1163T	/lustre/tmchen4/iso-seq/allin/align/10PM1163.tumour_Pacbio.hs1.aligned.bam	Tumor
+10PM2283T	/lustre/tmchen4/iso-seq/allin/align/10PM2283.tumour_Pacbio.hs1.aligned.bam	Tumor
+12PM1049T	/lustre/tmchen4/iso-seq/allin/align/12PM1049.tumour_Pacbio.hs1.aligned.bam	Tumor
+
+ggsashimi.py \
+  -b input_bams.tsv \                
+  -c chr12:121967414-122001029 \
+  -g annot.clip.plus.gtf \
+  -C 3 \                             
+  -P palette.tsv \                   
+  -M 2 \                             
+  -O 3 \ 
+  --base-size 14 --height 3.5 --width 11 \
+  -o chr12_isoseq_sashimi -F svg
