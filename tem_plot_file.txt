@@ -12,7 +12,8 @@ make_tracks_file --trackFiles \
     --out select_tissue.ini
 
 pyGenomeTracks --tracks select_tissue.ini --region chr12:121,967,414-122,001,029 --outFileName sel_patient-svaf.pdf
-
+tumour #ed1a1a
+normal #3246a8
 
 methylartist locus \
 --bams \
