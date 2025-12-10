@@ -1,6 +1,6 @@
 module load anaconda3
-conda create --prefix /scratch/project/te_lung/encode_chip
-source activate /scratch/project/te_lung/encode_chip
+conda create --prefix /scratch/user/uqmche33/conda/encode_chip
+source activate /scratch/user/uqmche33/conda/encode_chip
 conda install bioconda::caper
 mkdir -p ~/.caper
 #this step will generate default Caper configuration file ~/.caper/default.conf
