@@ -30,3 +30,7 @@
     "chip.ctl_fastqs_rep3_R2" : [ "/lustre/tmchen4/H1299/ChIP-Seq/H1299_input_R3_2.fastq.gz" ]
 
 }
+
+
+######things to remember 
+the json and raw data /and ouput directory for caper piplein batter in the same directory
