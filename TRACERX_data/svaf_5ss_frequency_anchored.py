@@ -25,7 +25,7 @@ def iter_junctions_1based(read):
             intron_start = ref                # 1-based first intronic base
             intron_end = ref + length - 1     # 1-based last intronic base
             donor = intron_start - 1
-            acceptor = intron_end
+            acceptor = intron_end + 1
             yield donor, acceptor
             ref += length
         else:
