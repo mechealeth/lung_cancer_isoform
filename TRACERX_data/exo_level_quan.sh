@@ -5,5 +5,4 @@ featureCounts \
   -a /scratch/user/uqmche33/Ref/CFAP251.gtf \
   -o tracerx_exon_counts.txt \
   -f -O -p \
-  -R BAM \
   /QRISdata/Q7816/TRACERX_bam/*.bam
