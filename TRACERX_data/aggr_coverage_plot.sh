@@ -8,3 +8,5 @@ wiggletools mean $(cat Normal.txt) > Normal.mean.wig
 wigToBigWig LUAD.mean.wig   /path/to/chrom.sizes LUAD.mean.bw
 wigToBigWig LUSC.mean.wig   /path/to/chrom.sizes LUSC.mean.bw
 wigToBigWig Normal.mean.wig /path/to/chrom.sizes Normal.mean.bw
+
+
