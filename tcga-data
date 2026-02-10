@@ -1,0 +1,4 @@
+module load anaconda3
+source activate /scratch/user/uqmche33/myenv/bambu_env
+gdc-client download -m /QRISdata/Q7816/TCGA_OV/gdc_manifest.ov.txt -t /scratch/user/uqmche33/meta_data/gdc-user-token.2026-02-10T05_01_48.801Z.txt
+
