@@ -33,7 +33,7 @@ python /sw/local/rocky8/noarch/qcif/software/SQANTI3-5.2/sqanti3_qc.py  /QRISdat
 
 
 
-python /sw/local/rocky8/noarch/qcif/software/SQANTI3-5.2hea/sqanti3_filter.py rules -j /lustre/tmchen4/iso-seq/bambu/bambu_NDR0.155/filter_rule.json tissue_isoseq_classification.txt \
-	                           --gtf /lustre/tmchen4/iso-seq/tissue_sample/SQANTI3_output_hs1SJ.out.tab/tissue_isoseq_corrected.gtf \
+python /sw/local/rocky8/noarch/qcif/software/SQANTI3-5.2/sqanti3_filter.py rules -j /QRISdata/Q7820/i3N/bambu/SQANTI3_output_hs1SJ.out.tab/filter_default.json isoseq_classification.txt \
+	                           --gtf /QRISdata/Q7820/i3N/bambu/SQANTI3_output_hs1SJ.out.tab/isoseq_corrected.gtf \
                                 -o filter
 
